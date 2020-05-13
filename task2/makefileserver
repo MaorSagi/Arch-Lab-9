@@ -1,0 +1,25 @@
+all: server
+
+
+server:   line_parser.o common.o server.o
+	gcc -g -Wall -o server server.o line_parser.o common.o
+
+	
+server.o: server.c line_parser.h common.h
+	gcc -g -Wall -c -o server.o server.c
+	
+	
+common.o: common.c common.h
+	gcc -g -Wall -c -o common.o common.c
+ 
+line_parser.o:	line_parser.c line_parser.h 
+	gcc -g -Wall -c -o line_parser.o line_parser.c
+	
+	
+	
+.PHONY: clean
+
+clean:
+	rm -f *.o server
+	
+
